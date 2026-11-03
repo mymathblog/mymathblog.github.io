@@ -1,420 +1,904 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Góc toán học của Nhân</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="format.css">
-
+    <title>Góc Toán Học Của Nhân | SweetMath - Nhập Ký Toán Cấp 3</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Quicksand:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-    /* Bố cục lưới cho các phần của trang chủ */
-    .home-section {
-        margin: 60px 0;
-    }
-    
-    .section-title {
-        text-align: center;
-        color: var(--primary-purple, #A78BFA);
-        font-size: 32px;
-        font-weight: 800;
-        margin-bottom: 30px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    /* Grid cho 4 tính năng chính */
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 25px;
-        margin-bottom: 40px;
-    }
-
-    .feature-card {
-        background: #fff;
-        border-radius: 24px;
-        padding: 30px 20px;
-        text-align: center;
-        box-shadow: 0 10px 30px rgba(167, 139, 250, 0.08);
-        transition: all 0.3s ease;
-        border-top: 5px solid transparent;
-    }
-
-    .feature-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 35px rgba(167, 139, 250, 0.2);
-    }
-
-    .feature-card.f-knowledge { border-top-color: #FF9A9E; }
-    .feature-card.f-practice { border-top-color: #60A5FA; }
-    .feature-card.f-exam { border-top-color: #A78BFA; }
-    .feature-card.f-document { border-top-color: #4ADE80; }
-
-    .feature-icon {
-        font-size: 45px;
-        margin-bottom: 15px;
-    }
-
-    .feature-card h4 {
-        color: var(--text-main, #333);
-        font-size: 22px;
-        margin-bottom: 10px;
-    }
-
-    .feature-card p {
-        color: var(--text-muted, #666);
-        font-size: 20px;
-        line-height: 1.6;
-    }
-
-    /* --- BẮT ĐẦU CSS CHO 4 TÍNH MỚI --- */
-    .innovations-grid {
-        display: grid;
-        /* Mặc định trên điện thoại (màn hình nhỏ): Xếp dọc 1 cột từ trên xuống dưới */
-        grid-template-columns: 1fr;
-        gap: 25px;
-        margin-top: 30px;
-    }
-
-    /* Trên Tablet (màn hình vừa): Xếp thành bảng 2x2 */
-    @media (min-width: 768px) {
-        .innovations-grid {
-            grid-template-columns: repeat(2, 1fr);
+        :root {
+            --bg-canvas: #faf7f2;
+            --bg-card: #ffffff;
+            --primary: #7c3aed;
+            --primary-light: #f3e8ff;
+            --accent-pink: #ff6b8b;
+            --accent-amber: #f59e0b;
+            --accent-blue: #3b82f6;
+            --text-main: #27272a;
+            --text-muted: #71717a;
+            --border-line: #e4e4e7;
+            --grid-pattern: rgba(124, 58, 237, 0.035);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 10px 25px -5px rgba(124, 58, 237, 0.08);
+            --shadow-hover: 0 18px 30px -8px rgba(124, 58, 237, 0.15);
+            --font-main: 'Quicksand', sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-math: 'Fira Code', monospace;
         }
-    }
 
-    /* Trên Máy tính (màn hình lớn): Xếp thành 1 hàng ngang 4 ô */
-    @media (min-width: 1024px) {
-        .innovations-grid {
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-canvas);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-image: 
+                linear-gradient(var(--grid-pattern) 1.5px, transparent 1.5px),
+                linear-gradient(90deg, var(--grid-pattern) 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Top Navigation Bar */
+        .navbar {
+            background: rgba(250, 247, 242, 0.88);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px dashed #e4e4e7;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 16px 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--accent-pink), var(--primary));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 6px 14px rgba(124, 58, 237, 0.2);
+            transform: rotate(-3deg);
+            transition: transform 0.3s ease;
+        }
+
+        .brand-box:hover .logo-icon {
+            transform: rotate(3deg) scale(1.05);
+        }
+
+        .brand-text h1 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .brand-text span {
+            font-size: 13px;
+            color: var(--accent-pink);
+            font-weight: 600;
+            display: block;
+            margin-top: -2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 14px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .btn-feedback-nav {
+            background: #ff6b8b !important;
+            color: white !important;
+            border-radius: 20px !important;
+            box-shadow: 0 4px 12px rgba(255, 107, 139, 0.25);
+        }
+
+        .btn-feedback-nav:hover {
+            transform: translateY(-2px);
+            background: #ff5277 !important;
+        }
+
+        /* Hero Section - Journal Theme */
+        .hero {
+            padding: 60px 0 40px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .tag-memory {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            border: 1.5px solid #e4e4e7;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 40px;
+            line-height: 1.25;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-title span.highlight {
+            background: linear-gradient(120deg, rgba(255, 107, 139, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+            padding: 2px 10px;
+            border-radius: 8px;
+            color: var(--primary);
+        }
+
+        .hero-slogan {
+            font-size: 17px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .hero-quote-card {
+            background: #ffffff;
+            border-left: 4px solid var(--accent-pink);
+            padding: 16px 20px;
+            border-radius: 0 16px 16px 0;
+            font-style: italic;
+            font-size: 15px;
+            color: #4b5563;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .btn-main {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 6px 18px rgba(124, 58, 237, 0.25);
+        }
+
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(124, 58, 237, 0.35);
+        }
+
+        .btn-sub {
+            background: #ffffff;
+            color: var(--text-main);
+            border: 1.5px solid var(--border-line);
+        }
+
+        .btn-sub:hover {
+            background: #f4f4f5;
+        }
+
+        /* Profile & Memories Card */
+        .journal-profile {
+            background: #ffffff;
+            border: 2px solid #e4e4e7;
+            border-radius: 28px;
+            padding: 28px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .journal-profile::before {
+            content: '✏️';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 28px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .avatar-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbcfe8, #c084fc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            border: 3px solid #fff;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-name h3 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .profile-name p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .badge-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #fafafa;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid #f4f4f5;
+        }
+
+        .badge-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .b-1 { background: #fef3c7; color: #d97706; }
+        .b-2 { background: #e0e7ff; color: #4338ca; }
+        .b-3 { background: #dcfce7; color: #15803d; }
+
+        .badge-info strong {
+            display: block;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        .badge-info span {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Pillars Section - 4 Kỳ thi */
+        .section-header {
+            text-align: center;
+            margin: 50px 0 35px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        .topics-grid {
+            display: grid;
             grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 60px;
         }
-    }
 
-    .innovation-card {
-        background: #ffffff;
-        border: 2px dashed #E0F2FE;
-        border-radius: 24px;
-        padding: 30px 25px;
-        text-align: left;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
-    }
+        .topic-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 24px 20px;
+            border: 2px solid var(--border-line);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+        }
 
-    .innovation-card:hover {
-        transform: translateY(-8px);
-        border-style: solid;
-        box-shadow: 0 15px 30px rgba(96, 165, 250, 0.15);
-    }
+        .topic-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-hover);
+        }
 
-    .innovation-card::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; width: 6px; height: 100%;
-    }
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            border-radius: 20px 20px 0 0;
+        }
 
-    .inno-1::before { background: #FF9A9E; }
-    .inno-2::before { background: #A78BFA; }
-    .inno-3::before { background: #4ADE80; }
-    .inno-4::before { background: #60A5FA; }
+        .t-thpt::before { background: var(--accent-pink); }
+        .t-hsg::before { background: var(--primary); }
+        .t-vsat::before { background: var(--accent-amber); }
+        .t-vact::before { background: var(--accent-blue); }
 
-    .innovation-card h3 {
-        font-size: 20px;
-        font-weight: 700;
-        margin: 0 0 12px 0;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+        .topic-tag {
+            font-family: var(--font-math);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 6px;
+            width: fit-content;
+            margin-bottom: 12px;
+        }
 
-    .inno-1 h3 { color: #FF6B6B; }
-    .inno-2 h3 { color: #7C3AED; }
-    .inno-3 h3 { color: #059669; }
-    .inno-4 h3 { color: #2563EB; }
+        .t-thpt .topic-tag { background: #ffe4e6; color: #e11d48; }
+        .t-hsg .topic-tag { background: #e0e7ff; color: #4338ca; }
+        .t-vsat .topic-tag { background: #fef3c7; color: #b45309; }
+        .t-vact .topic-tag { background: #dbeafe; color: #1d4ed8; }
 
-    .innovation-card p {
-        font-size: 18px;
-        color: #4B5563;
-        line-height: 1.6;
-        margin: 0;
-    }
-    /* --- KẾT THÚC CSS CHO 4 TÍNH MỚI --- */
+        .topic-card h3 {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
 
-    /* Grid cho Giới hạn đề tài */
-    .promises-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-    }
+        .topic-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
 
-    .promise-card {
-        background: linear-gradient(135deg, #FFF0F2, #FDE7EB);
-        border-radius: 20px;
-        padding: 25px;
-        display: flex;
-        align-items: flex-start;
-        gap: 15px;
-        transition: transform 0.3s ease;
-    }
-    
-    .promise-card:hover {
-        transform: scale(1.02);
-    }
+        .topic-link {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-    .promise-icon {
-        background: #FF9A9E;
-        color: white;
-        width: 50px;
-        height: 50px;
-        border-radius: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        flex-shrink: 0;
-        font-weight: bold;
-    }
+        /* Philosophy & Mindset Deconstruction */
+        .mindset-card {
+            background: linear-gradient(135deg, #2e1065, #4c1d95);
+            color: white;
+            border-radius: 28px;
+            padding: 40px;
+            margin-bottom: 60px;
+            box-shadow: var(--shadow-md);
+        }
 
-    .promise-content h4 {
-        margin: 0 0 8px 0;
-        color: #D6336C;
-        font-size: 20px;
-        text-transform: uppercase;
-    }
+        .mindset-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
 
-    .promise-content p {
-        margin: 0;
-        color: #555;
-        font-size: 20px;
-        line-height: 1.5;
-    }
+        .mindset-left h2 {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            margin-bottom: 16px;
+            color: #f4f4f5;
+        }
 
-    /* CSS cho phần Đánh giá & Góp ý */
-    .feedback-section {
-        background: linear-gradient(135deg, #F3E8FF, #E0F2FE);
-        border-radius: 24px;
-        padding: 40px 20px;
-        text-align: center;
-        margin: 60px 0;
-        box-shadow: 0 10px 30px rgba(167, 139, 250, 0.15);
-    }
-    .feedback-title {
-        color: var(--primary-purple, #A78BFA);
-        font-size: 28px;
-        font-weight: 800;
-        margin-bottom: 10px;
-        text-transform: uppercase;
-    }
-    .stars {
-        color: #FBBF24;
-        font-size: 45px;
-        margin-bottom: 15px;
-        letter-spacing: 5px;
-        text-shadow: 0 2px 5px rgba(251, 191, 36, 0.4);
-    }
-    .feedback-text {
-        font-size: 20px;
-        color: #4B5563;
-        margin-bottom: 25px;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.6;
-    }
-    .btn-form {
-        background: linear-gradient(135deg, #FF9A9E, #FECFEF);
-        color: white;
-        padding: 15px 35px;
-        border-radius: 50px;
-        font-size: 20px;
-        font-weight: bold;
-        text-decoration: none;
-        display: inline-block;
-        box-shadow: 0 5px 15px rgba(255, 154, 158, 0.4);
-        transition: transform 0.2s;
-    }
-    .btn-form:hover {
-        transform: scale(1.05);
-    }
+        .mindset-left p {
+            font-size: 16px;
+            color: #ddd6fe;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .mindset-points {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .m-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .m-point i {
+            color: #fcd34d;
+            font-size: 18px;
+            margin-top: 2px;
+        }
+
+        .m-point div strong {
+            display: block;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .m-point div span {
+            color: #c4b5fd;
+            font-size: 13px;
+        }
+
+        /* Recent Journal Entries */
+        .journal-section {
+            margin-bottom: 60px;
+        }
+
+        .journal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .journal-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 2px solid var(--border-line);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s ease;
+        }
+
+        .journal-card:hover {
+            transform: translateY(-4px);
+            border-color: #cbd5e1;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .journal-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .journal-category {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .journal-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .journal-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .journal-footer {
+            border-top: 1px dashed var(--border-line);
+            padding-top: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Feedback Callout */
+        .feedback-card {
+            background: linear-gradient(135deg, #fef3c7, #ffe4e6);
+            border: 2px dashed #fcd34d;
+            border-radius: 24px;
+            padding: 36px 20px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .feedback-card h3 {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            color: #78350f;
+            margin-bottom: 10px;
+        }
+
+        .feedback-card p {
+            font-size: 15px;
+            color: #92400e;
+            max-width: 580px;
+            margin: 0 auto 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #ffffff;
+            border-top: 2px solid var(--border-line);
+            padding: 30px 0;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 1024px) {
+            .topics-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-grid { grid-template-columns: 1fr; }
+            .journal-grid { grid-template-columns: repeat(2, 1fr); }
+            .mindset-layout { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            .topics-grid, .journal-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero-title { font-size: 30px; }
+            .mindset-card { padding: 24px; }
+            .footer-content { flex-direction: column; gap: 12px; }
+        }
     </style>
 </head>
 <body>
-    <header class="navbar">
-        <div class="brand-box" style="display: flex; align-items: center; gap: 15px;">
-            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none; transition: transform 0.2s ease;">
-                <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0px 4px 6px rgba(255, 117, 143, 0.2));">
-                    <rect x="10" y="10" width="80" height="80" rx="24" fill="#FFC6FF" />
-                    <rect x="15" y="15" width="70" height="70" rx="18" fill="#FFB7B2" />
-                    <circle cx="30" cy="30" r="7" fill="#FFFFFF" />
-                    <circle cx="70" cy="70" r="7" fill="#FFFFFF" />
-                    <circle cx="42" cy="52" r="5" fill="#3D3A45" />
-                    <circle cx="58" cy="52" r="5" fill="#3D3A45" />
-                    <circle cx="33" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
-                    <circle cx="67" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
-                    <path d="M 46 60 Q 50 66 54 60" stroke="#3D3A45" stroke-width="4" stroke-linecap="round" fill="none" />
-                    <path d="M 75 22 L 77 26 L 81 27 L 77 28 L 75 32 L 73 28 L 69 27 L 73 26 Z" fill="#FFFFFF" />
-                </svg>
-            </a>
-            <span class="slogan">Thanh xuân này, tôi dành riêng cho những bài toán cấp ba một sự nhiệt huyết không ai ngờ tới.</span>
-        </div>
 
-        <nav>
-            <ul>
-                <li><a href="index.html">Trang chủ</a></li>  
-                <li><a href="nentang.html">Nền tảng</a></li> 
-                <li><a href="thptqg.html">THPTQG</a></li>
-                <li><a href="hsg-thpt.html">HSG THPT</a></li>
-                <li><a href="v-sat.html">V-SAT</a></li>
-                <li><a href="v-act.html">V-ACT</a></li>
-                <li><a href="#feedback" style="background: #FF9A9E; color: #fff; padding: 6px 16px; border-radius: 20px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,154,158,0.3);">Liên hệ và góp ý 💌</a></li>
-            </ul>
-        </nav>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="brand-box">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>Góc toán học của Nhân</h1>
+                    <span>là góc nhỏ nơi đam mê toán học của mình đã bùng cháy mạnh mẽ.</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Trang chủ</a></li>  
+                    <li><a href="nentang.html">Nền tảng</a></li> 
+                    <li><a href="thptqg.html">THPTQG</a></li>
+                    <li><a href="hsg-thpt.html">HSG THPT</a></li>
+                    <li><a href="v-sat.html">V-SAT</a></li>
+                    <li><a href="v-act.html">V-ACT</a></li>
+                    <li><a href="#feedback" class="btn-feedback-nav">Góp ý 💌</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-<div class="hero-image">
-    <div class="hero-text">
-        <h1>Chào mừng các bạn đến với góc toán học của Nhân!</h1>
-        <h6 style="text-align: center; margin-bottom: 25px;">Chợt nhận ra ba năm cấp ba sắp kết thúc, mình bắt đầu có ý nghĩ là sẽ làm một điều gì đó thật tuyệt vời để lưu lại những kỷ niệm này ... </h6>
-        <a href="#kham-pha" class="btn-cute" style="display: inline-block; text-decoration: none;">KHÁM PHÁ NGAY!</a>
-    </div>
-</div>
+    <main class="container">
 
-<div class="content-wrapper">
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="hero-grid">
+                <div class="hero-left">
+                    <h1 class="hero-title">
+                        Nơi Nhân lưu giữ những bài toán <span class="highlight">thú vị & đáng nhớ</span>.
+                    </h1>
+                    <p class="hero-slogan">
+                        Chợt nhận ra ba năm cấp ba sắp kết thúc, mình muốn làm một điều gì đó thật tuyệt vời để lưu lại những kỷ niệm. Đây là góc nhỏ để mình đăng những bài toán hay mà mình đã sưu tầm được và viết lại cách mình đã tư duy để tìm ra lời giải.
+                    </p>
+                    <div class="hero-quote-card">
+                        <i class="fa-solid fa-quote-left" style="color: var(--accent-pink); margin-right: 6px;"></i>
+                        "Quá trình mình tư duy về bài toán ra sao thì khó nói chính xác vì dễ nói dối, nhưng cách để làm ra nó thì không thể nói dối được. Mình ở đây để phân tích cái cách làm đó."
+                    </div>
+                    <div class="btn-group">
+                        <a href="#topics" class="btn btn-main">
+                            Xem Bài Toán Theo Chủ Đề <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                        <a href="#journal" class="btn btn-sub">
+                            Bài Viết Mới
+                        </a>
+                    </div>
+                </div>
 
-    <!-- PHẦN 1: HỆ SINH THÁI TÍNH NĂNG -->
-    <div class="home-section" id="kham-pha">
-        <h2 class="section-title">Hệ sinh thái học tập tương tác thế hệ mới 🌌</h2>
-        <div class="features-grid">
-            <div class="feature-card f-knowledge">
-                <div class="feature-icon">🧠</div>
-                <h4>Lý thuyết trọng tâm</h4>
-                <p>Hệ thống hóa toàn bộ kiến thức cốt lõi về Xác suất một cách trực quan, mạch lạc, giúp học sinh nắm vững bản chất các loại biến cố dễ dàng.</p>
-            </div>
-            
-            <div class="feature-card f-practice">
-                <div class="feature-icon">⚡</div>
-                <h4>Tuyển tập bài toán</h4>
-                <p>Phân loại chi tiết các dạng toán thường gặp từ cơ bản đến vận dụng cao. Cung cấp chức năng giải thích động bật/mở theo từng bước tính cụ thể.</p>
-            </div>
-            
-            <div class="feature-card f-exam">
-                <div class="feature-icon">⏱️</div>
-                <h4>Thi thử chuẩn cấu trúc</h4>
-                <p>Mô phỏng thời gian thực theo cấu trúc 3 phần (nhiều lựa chọn, đúng - sai, trả lời ngắn). Tích hợp palette hỗ trợ kiểm soát tiến độ làm bài tiện lợi.</p>
-            </div>
-            
-            <div class="feature-card f-document">
-                <div class="feature-icon">🎁</div>
-                <h4>Thư viện đề thi thực tế</h4>
-                <p>Tổng hợp đề kiểm tra, khảo sát từ các Sở GD&ĐT và trường THPT để tải về miễn phí.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- PHẦN MỚI CẬP NHẬT: 4 TÍNH MỚI ĐỘT PHÁ -->
-    <div class="home-section">
-        <h2 class="section-title">4 YẾU TỐ SÁNG TẠO CỦA SWEETMATH ✨</h2>
-        <div class="innovations-grid">
-            <div class="innovation-card inno-1">
-                <h3><span>📱</span> Trải nghiệm Microlearning</h3>
-                <p>Kiến thức được phân mảnh thành các <b>thẻ tóm tắt</b> pastel bo tròn, thân thiện, giúp giảm bớt nỗi sợ Toán và tăng cường sự tập trung.</p>
-            </div>
-            
-            <div class="innovation-card inno-2">
-                <h3><span>💬</span> Ngôn ngữ "Gen Z hóa"</h3>
-                <p>Đơn giản hóa định nghĩa hàn lâm bằng hình ảnh liên tưởng thực chiến. <i>Ví dụ: Hợp ∪ là "chén chứa đồ", Giao ∩ là "chiếc nón chật hẹp".</i></p>
-            </div>
-            
-            <div class="innovation-card inno-3">
-                <h3><span>🧭</span> Scaffolding & Coaching</h3>
-                <p>Ứng dụng tư duy <b>flow-thinking</b> qua hệ thống tabs ẩn/hiện. Đóng vai trò gia sư 1-1 giúp học sinh hiểu bản chất ("Why") thay vì chép vẹt ("How").</p>
-            </div>
-            
-            <div class="innovation-card inno-4">
-                <h3><span>🎯</span> Bám sát cấu trúc thi mới</h3>
-                <p>Nhắm thẳng định hướng format trắc nghiệm mới; chủ động sửa các lỗi điền đáp án phổ biến như: làm tròn sai, lỗi viết dấu, viết nhầm dấu phẩy...</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- PHẦN 2: BÍ KÍP & TIPS -->
-    <div class="home-section">
-        <h2 class="section-title">Bí kíp 3 bước học hiệu quả cùng SweetMath 🚀</h2>
-        <div class="features-grid">
-            <div class="feature-card" style="border-top-color: #A78BFA; text-align: left; padding: 25px;">
-                <div class="feature-icon" style="font-size: 32px;">🔥 Bước 1</div>
-                <h4 style="font-size: 20px;">Nắm chắc bản chất tại "Kiến thức"</h4>
-                <p style="font-size: 18px;">Đừng vội lao vào làm bài tập ngay. Hãy dành 5 phút đọc kỹ tổng quan lý thuyết để định hình phương pháp và phân biệt rõ biến cố độc lập, xung khắc.</p>
-            </div>
-            
-            <div class="feature-card" style="border-top-color: #FF758F; text-align: left; padding: 25px;">
-                <div class="feature-icon" style="font-size: 32px;">🎯 Bước 2</div>
-                <h4 style="font-size: 20px;">Truy cập kho tài liệu và bài toán</h4>
-                <p style="font-size: 18px;">Tham khảo ngay tuyển tập bài toán và đề thi từ các Sở GD&ĐT và trường THPT để làm quen với đa dạng cách hành văn ra đề của các thầy cô.</p>
-            </div>
-            
-            <div class="feature-card" style="border-top-color: #4ADE80; text-align: left; padding: 25px;">
-                <div class="feature-icon" style="font-size: 32px;">💡 Bước 3</div>
-                <h4 style="font-size: 20px;">Phân tích lỗi sai qua giải thích</h4>
-                <p style="font-size: 18px;">Khi xem kết quả thi, đừng chỉ nhìn đáp án đúng hay sai. Hãy kích hoạt hộp thoại <b>Giải thích</b> để hiểu cách tư duy đằng sau mỗi bước giải chi tiết.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- PHẦN 3: ĐỐI TƯỢNG, PHẠM VI NGHIÊN CỨU -->
-    <div class="home-section">
-        <h2 class="section-title">Phạm vi nghiên cứu & Cam kết giá trị 🎯</h2>
-        <div class="promises-grid">
-            <div class="promise-card">
-                <div class="promise-icon">🧑‍🎓</div>
-                <div class="promise-content">
-                    <h4>ĐỐI TƯỢNG PHỤC VỤ</h4>
-                    <p>Dự án số hóa chuyên biệt cho học sinh cấp THPT đang gặp khó khăn với chuyên đề Xác suất, chuẩn bị cho kỳ thi Tốt nghiệp THPT từ 2027.</p>
+                <!-- PROFILE CARD -->
+                <div class="journal-profile">
+                    <div class="profile-header">
+                        <div class="avatar-box">
+                            <i class="fa-solid fa-pen-nib"></i>
+                        </div>
+                        <div class="profile-name">
+                            <h3>Thành tích ✍️</h3>
+                        </div>
+                    </div>
+                    <div class="badge-list">
+                        <div class="badge-item">
+                            <div class="badge-icon b-1">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <div class="badge-info">
+                                <strong>Giải Ba HSG Toán lý thuyết cấp Thành phố</strong>
+                                <span>Năm học 2025-2026 (Lớp 11)</span>
+                            </div>
+                        </div>
+                        <div class="badge-item">
+                            <div class="badge-icon b-2">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div class="badge-info">
+                                <strong>Giải Khuyến khích HSG Toán bằng tiếng Anh cấp Thành phố</strong>
+                                <span>Năm học 2024-2025 (Lớp 10)</span>
+                            </div>
+                        </div>
+                        <div class="badge-item">
+                            <div class="badge-icon b-3">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="badge-info">
+                                <strong>TBM Toán cả năm 9.9</strong>
+                                <span>Lớp 10 và lớp 11</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="promise-card">
-                <div class="promise-icon">💎</div>
-                <div class="promise-content">
-                    <h4>TƯ DUY TUYẾN TÍNH ĐỘT PHÁ</h4>
-                    <p>Cung cấp giải thích bằng văn bản động dạng module, giúp tự dò lỗi tư duy mọi lúc mọi nơi mà không yêu cầu mạng mạnh để xem video.</p>
-                </div>
-            </div>
-            
-            <div class="promise-card">
-                <div class="promise-icon">⚡</div>
-                <div class="promise-content">
-                    <h4>HỌC TẬP KHÔNG ÁP LỰC</h4>
-                    <p>Môi trường học tập 100% không quảng cáo. Giao diện mượt mà, tone màu pastel dịu mắt giúp giảm thiểu căng thẳng tâm lý khi ôn thi.</p>
-                </div>
+        </section>
+
+        <!-- TOPICS SECTION (4 KỲ THI / NƠI TÌM BÀI TOÁN HAY) -->
+        <section id="topics">
+            <div class="section-header">
+                <h2>Các bài toán theo kỳ thi 📚</h2>
             </div>
 
-            <div class="promise-card">
-                <div class="promise-icon">📚</div>
-                <div class="promise-content">
-                    <h4>BÁM SÁT GDPT 2018</h4>
-                    <p>Tư liệu chuẩn hóa bám sát cấu trúc đề thi mới nhất: nhiều lựa chọn, đúng - sai và trả lời ngắn do Bộ Giáo dục và Đào tạo quy định.</p>
+            <div class="topics-grid">
+                <!-- THPTQG -->
+                <a href="thptqg.html" class="topic-card t-thpt">
+                    <div class="topic-tag">Format Mới</div>
+                    <h3>Kỳ Thi THPTQG</h3>
+                    <p>Các bài toán bám sát cấu trúc mới: trắc nghiệm, đúng-sai và trả lời ngắn với nhiều bẫy thú vị.</p>
+                    <div class="topic-link">
+                        <span>Đọc các bài lưu niệm</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </a>
+
+                <!-- HSG THPT -->
+                <a href="hsg-thpt.html" class="topic-card t-hsg">
+                    <div class="topic-tag">Thử Thách Nâng Cao</div>
+                    <h3>HSG THPT</h3>
+                    <p>Góc dành cho các bài toán giải học sinh giỏi, toán lý thuyết mổ xẻ sâu và toán bằng Tiếng Anh.</p>
+                    <div class="topic-link">
+                        <span>Xem bài toán HSG</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </a>
+
+                <!-- V-SAT -->
+                <a href="v-sat.html" class="topic-card t-vsat">
+                    <div class="topic-tag">Tư Duy Nhanh</div>
+                    <h3>Kỳ Thi V-SAT</h3>
+                    <p>Những câu hỏi logic ngắn gọn, phản xạ nhanh dành cho kỳ thi đánh giá năng lực đầu vào.</p>
+                    <div class="topic-link">
+                        <span>Góc luyện V-SAT</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </a>
+
+                <!-- V-ACT -->
+                <a href="v-act.html" class="topic-card t-vact">
+                    <div class="topic-tag">Mở Rộng Mới 🚀</div>
+                    <h3>Kỳ Thi V-ACT</h3>
+                    <p>Góc trải nghiệm thêm các dạng bài toán chuẩn hóa năng lực thực tế đầy mới mẻ.</p>
+                    <div class="topic-link">
+                        <span>Khám phá V-ACT</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- PHILOSOPHY / HOW I WRITE -->
+        <section class="mindset-card">
+            <div class="mindset-layout">
+                <div class="mindset-left">
+                    <h2>Cách Nhân Nhìn Nhận Một Bài Toán 🔍</h2>
+                    <p>
+                        Không mang nặng tính sư phạm hay giảng dạy, mỗi bài đăng ở đây đơn thuần là **nhật ký bóc tách suy nghĩ**. Nếu rảnh rỗi, Nhân còn sưu tầm bài hay của người khác về để cùng ngẫm nghĩ:
+                    </p>
+                    <div class="mindset-points">
+                        <div class="m-point">
+                            <i class="fa-solid fa-lightbulb"></i>
+                            <div>
+                                <strong>Phân tích cái "Cách Làm"</strong>
+                                <span>Lý do tại sao mình chọn hướng đi này chứ không phải hướng đi khác.</span>
+                            </div>
+                        </div>
+                        <div class="m-point">
+                            <i class="fa-solid fa-compass"></i>
+                            <div>
+                                <strong>Nhận diện những điểm "Khung Khựng"</strong>
+                                <span>Chỉ ra những chỗ dễ nhầm lẫn hoặc vướng mắc mà học sinh như mình thường gặp.</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div style="text-align: center;">
+                    <div style="background: rgba(255, 255, 255, 0.08); padding: 28px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15);">
+                        <i class="fa-solid fa-heart" style="font-size: 40px; color: #ff6b8b; margin-bottom: 12px;"></i>
+                        <h4 style="font-size: 20px; color: white; margin-bottom: 8px;">Đam mê thanh xuân</h4>
+                        <p style="color: #ddd6fe; font-size: 14px;">
+                            "Thanh xuân này, tôi dành riêng cho những bài toán cấp ba một sự nhiệt huyết không ai ngờ tới."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECENT POSTS -->
+        <section id="journal" class="journal-section">
+            <div style="margin-bottom: 24px;">
+                <h2 style="font-family: var(--font-heading); font-size: 26px; font-weight: 700;">Nhật Ký Bài Toán Gần Đây 📝</h2>
+            </div>
+
+            <div class="journal-grid">
+                <!-- Post 1 -->
+                <article class="journal-card">
+                    <div class="journal-meta">
+                        <span class="journal-category">HSG THPT</span>
+                        <span>Nhật ký Lớp 11</span>
+                    </div>
+                    <h3 class="journal-title">Một bài toán Xác Suất bằng Tiếng Anh thú vị và cách mình "gỡ rối"</h3>
+                    <p class="journal-desc">
+                        Ghi lại cảm giác lúc đầu dịch sai từ khóa làm kết quả lệch đi hoàn toàn, và góc nhìn mô hình hóa biến cố để tìm đáp án đúng.
+                    </p>
+                    <div class="journal-footer">
+                        <span>Xem chi tiết ghi chép</span>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </div>
+                </article>
+
+                <!-- Post 2 -->
+                <article class="journal-card">
+                    <div class="journal-meta">
+                        <span class="journal-category" style="background: #fef3c7; color: #b45309;">V-SAT / V-ACT</span>
+                        <span>Mẹo cá nhân</span>
+                    </div>
+                    <h3 class="journal-title">Những lỗi làm tròn sai đáng tiếc mình từng gặp ở dạng Trả Lời Ngắn</h3>
+                    <p class="journal-desc">
+                        Tự nhắc nhở bản thân về cách bấm máy tính và quy tắc viết dấu phẩy thập phân khi làm bài trắc nghiệm kiểu mới.
+                    </p>
+                    <div class="journal-footer">
+                        <span>Đọc lưu ý</span>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </div>
+                </article>
+
+                <!-- Post 3 -->
+                <article class="journal-card">
+                    <div class="journal-meta">
+                        <span class="journal-category" style="background: #ffe4e6; color: #e11d48;">THPTQG</span>
+                        <span>Bài toán hay sưu tầm</span>
+                    </div>
+                    <h3 class="journal-title">Sưu tầm: 5 bài toán Hàm Số có cách phát biểu đề rất "lạ"</h3>
+                    <p class="journal-desc">
+                        Phân tích lại 5 bài toán hay trong đề thi thử của các trường THPT chuyên mà Nhân tình cờ giải được tuần qua.
+                    </p>
+                    <div class="journal-footer">
+                        <span>Xem lời giải mổ xẻ</span>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- FEEDBACK SECTION -->
+        <section class="feedback-card" id="feedback">
+            <h3>Góp Ý Hoặc Chia Sẻ Bài Toán Hay Với Nhân 💌</h3>
+            <p>
+                Nếu bạn có bài toán nào hay muốn mình cùng phân tích hoặc có ý kiến đóng góp cho blog kỷ niệm này, hãy nhắn cho Nhân một lời nhé!
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdO94wEbVab8-L-8dJtF3zaQTmh3mFEnruXNhSBv8Wt2nHFzA/viewform?usp=publish-editor" target="_blank" class="btn btn-main" style="background: var(--accent-pink);">
+                <i class="fa-solid fa-paper-plane"></i> Gửi Tin Nhắn / Góp Ý Ngay
+            </a>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div>
+                <strong>Góc Toán Học Của Nhân (SweetMath)</strong>
+                <span style="display: block; font-size: 13px; color: var(--text-muted);">Cuốn nhật ký lưu giữ niềm đam mê Toán thời THPT</span>
+            </div>
+            <div>
+                <p>Bản quyền © 2026 SweetMath</p>
             </div>
         </div>
-    </div>
-
-    <!-- PHẦN ĐÁNH GIÁ & GÓP Ý TƯƠNG TÁC -->
-    <div class="feedback-section" id="feedback">
-        <h2 class="feedback-title">Bạn nghĩ sao về SweetMath? 💌</h2>
-        <p class="feedback-text">Mọi ý kiến đóng góp mang tính xây dựng của bạn là nguồn động lực to lớn giúp nhóm tác giả tiếp tục nâng cấp thuật toán và mở rộng kho học liệu. Mong bạn dành 1 phút để đánh giá trải nghiệm nhé!</p>
-        
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdO94wEbVab8-L-8dJtF3zaQTmh3mFEnruXNhSBv8Wt2nHFzA/viewform?usp=publish-editor" target="_blank" class="btn-form">Chấm điểm & Gửi góp ý ngay 🚀</a>
-    </div>
-
-</div>
-
-<footer>
-    <p>Góc toán học của Nhân</p>
-    <p>Bản quyền © 2026</p>
-</footer>
+    </footer>
 
 </body>
 </html>
+```
